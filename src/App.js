@@ -4,21 +4,31 @@ import ContactList from "components/ContactList/ContactList";
 import MainContainer from "components/MainContainer/MainContainer";
 import Header from "components/Header/Header";
 import Homepage from "components/Homeview/Homeview";
-// import { LogIn } from "components/LogIn/login";
 import Nav from "components/Navigation/Navigation";
 import { Route, Switch } from "react-router";
 import { lazy, Suspense } from "react";
 import { LogIn } from "components/LogIn/login";
+import Register from "components/Register/Register";
 import "./App.css";
+import UserMenu from "components/UserMenu/UserMenu";
+import { AppBar } from "components/AppBar/AppBar";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import authOperations from "redux/auth/auth-operations";
+import { fetchAllContacts } from "redux/phoneBook/phoneBook-operations";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+    dispatch(fetchAllContacts());
+  }, [dispatch]);
   return (
     <>
       <MainContainer>
-        <Header>
-          <Nav />
-        </Header>
+        <Nav />
         <Suspense fallback={<h1>Wait a sec...</h1>} />
+
         <Switch>
           <Route path="/" exact>
             <Homepage />
@@ -27,7 +37,7 @@ function App() {
             <LogIn />
           </Route>
           <Route path="/Register">
-            <LogIn />
+            <Register />
           </Route>
           <Route path="/Contacts">
             <PhoneForm />
@@ -35,12 +45,6 @@ function App() {
             <FilterContacts />
             <ContactList />
           </Route>
-          {/* <Route path="/Register">
-        <LogIn/>
-          </Route> */}
-          {/* <h2>Contacts:</h2>
-        <FilterContacts />
-        <ContactList /> */}
         </Switch>
       </MainContainer>
     </>

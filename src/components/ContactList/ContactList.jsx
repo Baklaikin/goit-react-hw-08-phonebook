@@ -6,13 +6,16 @@ import {
   fetchDelete,
 } from "redux/phoneBook/phoneBook-operations";
 import { getItems, getFilter } from "redux/phoneBook/phoneBook-selectors";
+import authSelectors from "redux/auth/auth-selectors";
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getItems);
   const filter = useSelector(getFilter);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
+    if (!isLoggedIn) return;
     dispatch(fetchAllContacts());
   }, [dispatch]);
   const filtered = contacts.filter((contact) =>

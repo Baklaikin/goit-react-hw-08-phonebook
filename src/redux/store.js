@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import { contactsReducer } from "./phoneBook/phoneBook-reducers";
-import authSlice from "./phoneBook/auth/auth-slice";
+import authSlice from "./auth/auth-slice";
 import {
   persistStore,
   persistReducer,
@@ -19,12 +19,6 @@ const persistConfig = {
   storage,
   whitelist: ["token"],
 };
-
-// const rootReducer = ()=> {
-//   return {
-//     contacts: contactsReducer
-//   }
-// }
 
 const persistedReducer = persistReducer(persistConfig, authSlice);
 
