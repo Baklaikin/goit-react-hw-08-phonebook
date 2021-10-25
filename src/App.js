@@ -1,53 +1,62 @@
-import PhoneForm from "components/PhoneForm/PhoneForm";
-import FilterContacts from "components/FilterContacts/FilterContacts";
-import ContactList from "components/ContactList/ContactList";
 import MainContainer from "components/MainContainer/MainContainer";
-import Header from "components/Header/Header";
 import Homepage from "components/Homeview/Homeview";
 import Nav from "components/Navigation/Navigation";
-import { Route, Switch } from "react-router";
+import { Switch } from "react-router";
 import { lazy, Suspense } from "react";
-import { LogIn } from "components/LogIn/login";
-import Register from "components/Register/Register";
-import "./App.css";
-import UserMenu from "components/UserMenu/UserMenu";
-import { AppBar } from "components/AppBar/AppBar";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import authOperations from "redux/auth/auth-operations";
-import { fetchAllContacts } from "redux/phoneBook/phoneBook-operations";
+// import { fetchAllContacts } from "redux/phoneBook/phoneBook-operations";
+import PrivatRoute from "components/Navigation/PrivateRoute";
+import PublicRoute from "components/Navigation/PublicRoute";
+import authSelectors from "redux/auth/auth-selectors";
+
+import "./App.css";
+
+const LogIn = lazy(() => import("components/LogIn/login"));
+const Register = lazy(() => import("components/Register/Register"));
+const PhoneForm = lazy(() => import("components/PhoneForm/PhoneForm"));
+const FilterContacts = lazy(() =>
+  import("components/FilterContacts/FilterContacts")
+);
+const ContactList = lazy(() => import("components/ContactList/ContactList"));
 
 function App() {
   const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getFetchingStatus);
+  console.log(isFetchingCurrentUser);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-    dispatch(fetchAllContacts());
+    // dispatch(fetchAllContacts());
   }, [dispatch]);
   return (
-    <>
+    !isFetchingCurrentUser && (
       <MainContainer>
         <Nav />
-        <Suspense fallback={<h1>Wait a sec...</h1>} />
+        <Suspense fallback={<h1>Wait a sec...</h1>}>
+          <Switch>
+            <PublicRoute exact path="/">
+              <Homepage />
+            </PublicRoute>
 
-        <Switch>
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
-          <Route path="/LogIn">
-            <LogIn />
-          </Route>
-          <Route path="/Register">
-            <Register />
-          </Route>
-          <Route path="/Contacts">
-            <PhoneForm />
-            <h2>Contacts:</h2>
-            <FilterContacts />
-            <ContactList />
-          </Route>
-        </Switch>
+            <PublicRoute exact path="/login" restricted>
+              <LogIn />
+            </PublicRoute>
+
+            <PublicRoute exact path="/register" restricted>
+              <Register />
+            </PublicRoute>
+
+            <PrivatRoute path="/Contacts" redirectTo="/login">
+              <PhoneForm />
+              <h2>Contacts:</h2>
+              <FilterContacts />
+              <ContactList />
+            </PrivatRoute>
+          </Switch>
+        </Suspense>
       </MainContainer>
-    </>
+    )
   );
 }
 

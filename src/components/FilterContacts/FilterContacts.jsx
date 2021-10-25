@@ -1,12 +1,35 @@
-import s from "components/FilterContacts/FilterContacts.module.css";
+// import s from "components/FilterContacts/FilterContacts.module.css";
 import { setFilterField } from "redux/phoneBook/phoneBook-actions";
 import { connect } from "react-redux";
+import styled from "@emotion/styled";
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
+`;
+
+const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 20px;
+`;
+
+const Span = styled.span`
+  margin-bottom: 10px;
+`;
 
 function FilterContacts({ setFilter, filter }) {
   return (
-    <form className={s.findForm}>
-      <label className={s.findFormLabel}>
-        Find contacts by name
+    <Form>
+      <Label>
+        <Span>Find contacts by name</Span>
         <input
           type="text"
           name="filter"
@@ -17,8 +40,8 @@ function FilterContacts({ setFilter, filter }) {
             setFilter(data);
           }}
         />
-      </label>
-    </form>
+      </Label>
+    </Form>
   );
 }
 

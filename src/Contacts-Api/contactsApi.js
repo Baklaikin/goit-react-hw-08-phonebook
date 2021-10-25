@@ -1,6 +1,4 @@
 import axios from "axios";
-
-// const BASE_URL = "https://connections-api.herokuapp.com";
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
 export async function fetchContacts() {
@@ -29,6 +27,11 @@ export async function fetchDeleteContact(id) {
   await axios.delete(`/contacts/${id}`);
 }
 
+export async function fetchEditContact(id) {
+  const editedContact = axios.patch(`/contacts/${id}`);
+  return editedContact;
+}
+
 export async function fetchRegister(data) {
   const { name, email, password } = data;
   const registerNewUser = await axios.post(
@@ -52,12 +55,12 @@ export async function fetchGetCurrent(data) {
   return fetchCurrentUser;
 }
 
-export async function fetchLogin(data) {
+export async function fetchLogin() {
   const fetchLoginUser = await axios.post(`/user/login`);
   return fetchLoginUser;
 }
 
-export async function fetchLogout(data) {
+export async function fetchLogout() {
   const fetchLogoutUser = await axios.post(`/user/login`);
   return fetchLogoutUser;
 }

@@ -5,17 +5,19 @@ const NavigationLink = styled(NavLink)`
   color: darkgrey;
   font-size: 20px;
   text-decoration: none;
-  margin-right: 5px;
   &.active {
     color: darkgreen;
+  }
+  &:not(:last-child) {
+    margin-right: 10px;
   }
 `;
 
 export const Authnav = () => {
   return (
     <div>
-      <NavigationLink to="/LogIn">Логин</NavigationLink>
-      <NavigationLink to="/Register">Регистрация</NavigationLink>
+      <NavigationLink to="/login">Логин</NavigationLink>
+      <NavigationLink to="/register">Регистрация</NavigationLink>
     </div>
   );
 };

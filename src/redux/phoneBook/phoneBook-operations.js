@@ -40,3 +40,7 @@ export const fetchDelete = (id) => async (dispatch) => {
     dispatch(fetchStatus.fetchDeleteError());
   }
 };
+
+export const fetchEditContact = (id) => async (dispatch) => {
+  // dispatch(fetchStatus.fetchEditRequest());
+};

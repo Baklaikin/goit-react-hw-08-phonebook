@@ -3,8 +3,37 @@ import { useDispatch } from "react-redux";
 import { fetchAddContactToDb } from "redux/phoneBook/phoneBook-operations";
 import { useSelector } from "react-redux";
 import { getItems } from "redux/phoneBook/phoneBook-selectors";
-import s from "components/PhoneForm/PhoneForm.module.css";
+import styled from "@emotion/styled";
 
+//Styles
+const Form = styled.form`
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
+`;
+
+const FormInput = styled.input`
+  margin-right: 15px;
+`;
+
+const FormLabel = styled.label`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+const AddButton = styled.button`
+  width: 120px;
+  height: 20px;
+  border-radius: 4px;
+`;
+
+//Function
 function PhoneForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -43,11 +72,10 @@ function PhoneForm() {
   };
 
   return (
-    <form onSubmit={addToContactsList} className={s.form}>
-      <label className={s.formLabel}>
+    <Form onSubmit={addToContactsList}>
+      <FormLabel>
         Name
-        <input
-          className={s.formInput}
+        <FormInput
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -56,11 +84,10 @@ function PhoneForm() {
           value={name}
           onChange={handleInputChange}
         />
-      </label>
-      <label className={s.formLabel}>
+      </FormLabel>
+      <FormLabel>
         Number
-        <input
-          className={s.formInput}
+        <FormInput
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -69,11 +96,9 @@ function PhoneForm() {
           value={number}
           onChange={handleInputChange}
         />
-      </label>
-      <button className={s.addToContacts} type="submit">
-        Add to contacts
-      </button>
-    </form>
+      </FormLabel>
+      <AddButton type="submit">Add to contacts</AddButton>
+    </Form>
   );
 }
 
