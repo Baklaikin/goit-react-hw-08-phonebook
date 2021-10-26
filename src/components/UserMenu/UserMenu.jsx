@@ -2,11 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import authOperations from "redux/auth/auth-operations";
 import authSelectors from "redux/auth/auth-selectors";
 import styled from "@emotion/styled";
+import { Button } from "@mui/material";
 
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row-reverse;
+  align-items: center;
+  margin-left: auto;
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
@@ -27,7 +30,7 @@ const Title = styled.h4`
   }
 `;
 
-const Button = styled.button``;
+// const Button = styled.button``;
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -36,9 +39,15 @@ export default function UserMenu() {
   return (
     <Wrapper>
       <Title>{email}</Title>
-      <button type="submit" onClick={() => dispatch(authOperations.logOut())}>
+      <Button
+        variant="outlined"
+        color="error"
+        size="small"
+        type="submit"
+        onClick={() => dispatch(authOperations.logOut())}
+      >
         Выйти
-      </button>
+      </Button>
     </Wrapper>
   );
 }

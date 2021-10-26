@@ -6,7 +6,6 @@ import { lazy, Suspense } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import authOperations from "redux/auth/auth-operations";
-// import { fetchAllContacts } from "redux/phoneBook/phoneBook-operations";
 import PrivatRoute from "components/Navigation/PrivateRoute";
 import PublicRoute from "components/Navigation/PublicRoute";
 import authSelectors from "redux/auth/auth-selectors";
@@ -24,10 +23,8 @@ const ContactList = lazy(() => import("components/ContactList/ContactList"));
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getFetchingStatus);
-  console.log(isFetchingCurrentUser);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-    // dispatch(fetchAllContacts());
   }, [dispatch]);
   return (
     !isFetchingCurrentUser && (

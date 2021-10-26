@@ -1,7 +1,7 @@
-// import s from "components/FilterContacts/FilterContacts.module.css";
 import { setFilterField } from "redux/phoneBook/phoneBook-actions";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
+import { TextField } from "@mui/material";
 
 const Form = styled.form`
   display: flex;
@@ -10,37 +10,30 @@ const Form = styled.form`
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 768px) {
-    width: 500px;
+    width: 450px;
   }
-`;
-
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-weight: 500;
-  font-size: 20px;
-`;
-
-const Span = styled.span`
-  margin-bottom: 10px;
+  @media screen and (min-width: 1024px) {
+    width: 600px;
+  }
 `;
 
 function FilterContacts({ setFilter, filter }) {
   return (
     <Form>
-      <Label>
-        <Span>Find contacts by name</Span>
-        <input
-          type="text"
-          name="filter"
-          autoComplete="off"
-          value={filter}
-          onChange={(event) => {
-            const data = event.target.value;
-            setFilter(data);
-          }}
-        />
-      </Label>
+      <TextField
+        id="outlined-basic"
+        label="Find contact by name"
+        variant="outlined"
+        color="error"
+        type="text"
+        name="filter"
+        autoComplete="off"
+        value={filter}
+        onChange={(event) => {
+          const data = event.target.value;
+          setFilter(data);
+        }}
+      />
     </Form>
   );
 }

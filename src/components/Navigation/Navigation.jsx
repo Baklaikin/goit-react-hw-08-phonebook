@@ -11,6 +11,7 @@ const NavigationLink = styled(NavLink)`
   color: darkgrey;
   font-size: 14px;
   text-decoration: none;
+  margin-right: 10px;
 
   &.active {
     color: darkgreen;
@@ -28,12 +29,22 @@ const NavigationLink = styled(NavLink)`
 const Navigation = styled.nav`
   padding: 0;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  align-items: baseline;
 `;
 
 const Header = styled.header`
   height: auto;
+  width: 320px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0de;
+
+  @media screen and (min-width: 768px) {
+    width: 450px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 600px;
+  }
 `;
 
 //Function

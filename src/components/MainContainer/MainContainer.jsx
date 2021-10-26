@@ -8,15 +8,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  border: 1px solid grey;
-  border-radius: 4px;
 
   @media screen and (min-width: 768px) {
-    min-width: 768px;
+    min-width: 450px;
     padding: 12px;
   }
   @media screen and (min-width: 1024px) {
-    min-width: 1024px;
+    min-width: 600px;
     padding: 16px;
   }
 `;

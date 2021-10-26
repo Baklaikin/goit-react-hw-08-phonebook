@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "redux/auth/auth-operations";
+import { Button, TextField } from "@mui/material";
 
 const Form = styled.form`
   width: 280px;
@@ -16,22 +17,9 @@ const Form = styled.form`
   }
 `;
 
-const Button = styled.button``;
-
-const Label = styled.label`
-  display: flex;
-  justify-content: space-between;
+const Input = styled(TextField)`
   margin-bottom: 10px;
 `;
-
-const Input = styled.input`
-  border-radius: 4px;
-  @media screen and (min-width: 768px) {
-    width: 250px;
-  }
-`;
-
-const Span = styled.span``;
 
 export default function LogIn() {
   const dispatch = useDispatch();
@@ -57,27 +45,32 @@ export default function LogIn() {
   };
   return (
     <Form action="auth" onSubmit={submitHandler}>
-      <Label>
-        <Span>Email</Span>
-        <Input
-          type="text"
-          autoComplete="off"
-          name="email"
-          value={email}
-          onChange={inputHandler}
-        />
-      </Label>
-      <Label>
-        <Span>Password</Span>
-        <Input
-          type="text"
-          autoComplete="off"
-          name="password"
-          value={password}
-          onChange={inputHandler}
-        />
-      </Label>
-      <Button type="submit">Войти</Button>
+      <Input
+        id="outlined-basic"
+        label="Email"
+        variant="outlined"
+        color="error"
+        type="text"
+        autoComplete="off"
+        name="email"
+        value={email}
+        onChange={inputHandler}
+      />
+
+      <Input
+        id="outlined-basic"
+        label="Password"
+        variant="outlined"
+        color="error"
+        type="text"
+        autoComplete="off"
+        name="password"
+        value={password}
+        onChange={inputHandler}
+      />
+      <Button variant="outlined" color="error" size="medium" type="submit">
+        Войти
+      </Button>
     </Form>
   );
 }

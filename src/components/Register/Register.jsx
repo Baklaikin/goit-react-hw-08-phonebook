@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "redux/auth/auth-operations";
 import styled from "@emotion/styled";
+import { Button, TextField } from "@mui/material";
 
 const Form = styled.form`
   width: 280px;
@@ -12,24 +13,12 @@ const Form = styled.form`
   margin-top: 20px;
 
   @media screen and (min-width: 768px) {
-    min-width: 400px;
+    min-width: 330px;
   }
 `;
 
-const Button = styled.button``;
-
-const Label = styled.label`
-  /* margin-right:auto; */
-  display: flex;
-  justify-content: space-between;
+const Input = styled(TextField)`
   margin-bottom: 10px;
-`;
-
-const Input = styled.input`
-  border-radius: 4px;
-  @media screen and (min-width: 768px) {
-    width: 250px;
-  }
 `;
 
 function Register() {
@@ -61,31 +50,40 @@ function Register() {
 
   return (
     <div>
-      {/* <h1>Registration page</h1> */}
       <Form action="" onSubmit={clickHandler}>
-        <Label>
-          Name
-          <Input type="text" name="name" value={name} onChange={handleChange} />
-        </Label>
-        <Label>
-          Email
-          <Input
-            type="text"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </Label>
-        <Label>
-          Password
-          <Input
-            type="text"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </Label>
-        <Button type="submit">Register</Button>
+        <Input
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
+          color="error"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+        />
+        <Input
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          color="error"
+          type="text"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+        <Input
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          color="error"
+          type="text"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
+        <Button variant="outlined" color="error" size="medium" type="submit">
+          Register
+        </Button>
       </Form>
     </div>
   );
