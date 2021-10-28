@@ -1,21 +1,7 @@
 import { setFilterField } from "redux/phoneBook/phoneBook-actions";
 import { connect } from "react-redux";
-import styled from "@emotion/styled";
+import { Form } from "components/FilterContacts/FilterContacts.styled";
 import { TextField } from "@mui/material";
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 320px;
-  margin-left: auto;
-  margin-right: auto;
-  @media screen and (min-width: 768px) {
-    width: 450px;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 600px;
-  }
-`;
 
 function FilterContacts({ setFilter, filter }) {
   return (
