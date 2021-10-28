@@ -13,7 +13,7 @@ export default function UserMenu() {
       <Title>{email}</Title>
       <Button
         variant="outlined"
-        color="error"
+        color="primary"
         size="small"
         type="submit"
         onClick={() => dispatch(authOperations.logOut())}

@@ -29,25 +29,27 @@ const ContactList = () => {
   );
 
   return (
-    <List>
-      {filtered.map(({ id, name, number }) => {
-        return (
-          <ListItem key={id}>
-            {name}: <Number>{number}</Number>
-            <Button
-              variant="outlined"
-              color="error"
-              size="small"
-              type="button"
-              name="delete"
-              onClick={() => dispatch(fetchDelete(id))}
-            >
-              Delete
-            </Button>
-          </ListItem>
-        );
-      })}
-    </List>
+    filtered.length > 0 && (
+      <List>
+        {filtered.map(({ id, name, number }) => {
+          return (
+            <ListItem key={id}>
+              {name}: <Number>{number}</Number>
+              <Button
+                variant="outlined"
+                color="primary"
+                size="small"
+                type="button"
+                name="delete"
+                onClick={() => dispatch(fetchDelete(id))}
+              >
+                Delete
+              </Button>
+            </ListItem>
+          );
+        })}
+      </List>
+    )
   );
 };
 

@@ -1,4 +1,4 @@
-import { Form, Input } from "components/LogIn/Login.styled";
+import { Form, StyledInput } from "components/LogIn/Login.styled";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "@mui/material";
@@ -6,52 +6,52 @@ import authOperations from "redux/auth/auth-operations";
 
 export default function LogIn() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
   const submitHandler = (event) => {
     event.preventDefault();
+    const { email, password } = credentials;
     dispatch(authOperations.logIn({ email, password }));
-    setEmail("");
-    setPassword("");
+    setCredentials({
+      email: "",
+      password: "",
+    });
   };
 
   const inputHandler = ({ target: { name, value } }) => {
-    switch (name) {
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
-    }
+    setCredentials((prev) => ({ ...prev, [name]: value }));
   };
   return (
     <Form action="auth" onSubmit={submitHandler}>
-      <Input
+      <StyledInput
         id="outlined-basic"
+        required
         label="Email"
         variant="outlined"
-        color="error"
+        color="primary"
         type="text"
         autoComplete="off"
         name="email"
-        value={email}
+        value={credentials.email}
         onChange={inputHandler}
       />
 
-      <Input
-        id="outlined-basic"
+      <StyledInput
+        id="outlined-basics"
+        required
         label="Password"
         variant="outlined"
-        color="error"
-        type="text"
+        color="primary"
+        type="password"
         autoComplete="off"
         name="password"
-        value={password}
+        value={credentials.password}
         onChange={inputHandler}
       />
-      <Button variant="outlined" color="error" size="medium" type="submit">
+      <Button variant="outlined" color="primary" size="medium" type="submit">
         Войти
       </Button>
     </Form>

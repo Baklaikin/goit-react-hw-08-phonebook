@@ -6,29 +6,25 @@ import authOperations from "redux/auth/auth-operations";
 
 function Register() {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newUser, setNewUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case "name":
-        return setName(value);
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
-    }
+    setNewUser((prev) => ({ ...prev, [name]: value }));
   };
 
   const clickHandler = (event) => {
+    const { name, email, password } = newUser;
     event.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
-    setName("");
-    setEmail("");
-    setPassword("");
+    setNewUser({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -36,35 +32,38 @@ function Register() {
       <Form action="" onSubmit={clickHandler}>
         <Input
           id="outlined-basic"
+          required
           label="Name"
           variant="outlined"
-          color="error"
+          color="primary"
           type="text"
           name="name"
-          value={name}
+          value={newUser.name}
           onChange={handleChange}
         />
         <Input
           id="outlined-basic"
+          required
           label="Email"
           variant="outlined"
-          color="error"
+          color="primary"
           type="text"
           name="email"
-          value={email}
+          value={newUser.email}
           onChange={handleChange}
         />
         <Input
           id="outlined-basic"
+          required
           label="Password"
           variant="outlined"
-          color="error"
+          color="primary"
           type="text"
           name="password"
-          value={password}
+          value={newUser.password}
           onChange={handleChange}
         />
-        <Button variant="outlined" color="error" size="medium" type="submit">
+        <Button variant="outlined" color="primary" size="medium" type="submit">
           Register
         </Button>
       </Form>

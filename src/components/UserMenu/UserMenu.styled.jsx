@@ -19,7 +19,7 @@ export const Title = styled.h4`
   margin-top: 0;
   margin-bottom: 0;
   &.active {
-    color: darkgreen;
+    color: #1976d2;
   }
   @media screen and (min-width: 768px) {
     font-size: 16px;

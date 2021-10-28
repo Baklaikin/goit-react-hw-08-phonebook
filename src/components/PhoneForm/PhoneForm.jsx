@@ -7,40 +7,35 @@ import { Form, FormLabel, Div } from "components/PhoneForm/PhoneForm.styled";
 import { Button } from "@mui/material";
 
 function PhoneForm() {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [user, setUser] = useState({
+    name: "",
+    number: "",
+  });
   const state = useSelector(getItems);
   const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const data = e.currentTarget.value;
-    switch (e.currentTarget.name) {
-      case "name":
-        setName(data);
-        break;
-      case "number":
-        setNumber(data);
-        break;
-      default:
-        return;
-    }
+    const name = e.currentTarget.name;
+    setUser((prev) => ({ ...prev, [name]: data }));
   };
 
   const addToContactsList = (e) => {
     e.preventDefault();
-    const data = { name, number };
-    const isInList = state.find((item) => item.number === data.number);
+    const isInList = state.find((item) => item.number === user.number);
     if (isInList) {
-      alert(`${data.name} is already in contacts`);
+      alert(`${user.name} is already in contacts`);
       return;
     }
-    dispatch(fetchAddContactToDb(data));
+    dispatch(fetchAddContactToDb(user));
     resetForm();
   };
 
   const resetForm = () => {
-    setName("");
-    setNumber("");
+    setUser({
+      name: "",
+      number: "",
+    });
   };
 
   return (
@@ -50,30 +45,30 @@ function PhoneForm() {
           id="outlined-basic"
           label="Name"
           variant="outlined"
-          color="error"
+          color="primary"
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
-          value={name}
+          value={user.name}
           onChange={handleInputChange}
         />
         <FormLabel
           id="outlined-basic"
           label="Number"
           variant="outlined"
-          color="error"
+          color="primary"
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
-          value={number}
+          value={user.number}
           onChange={handleInputChange}
         />
       </Div>
-      <Button variant="outlined" color="error" size="medium" type="submit">
+      <Button variant="outlined" color="primary" size="medium" type="submit">
         Add to contacts
       </Button>
     </Form>

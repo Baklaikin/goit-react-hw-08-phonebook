@@ -10,7 +10,7 @@ function FilterContacts({ setFilter, filter }) {
         id="outlined-basic"
         label="Find contact by name"
         variant="outlined"
-        color="error"
+        color="primary"
         type="text"
         name="filter"
         autoComplete="off"

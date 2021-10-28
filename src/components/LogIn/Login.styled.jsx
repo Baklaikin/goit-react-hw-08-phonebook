@@ -5,6 +5,7 @@ export const Form = styled.form`
   width: 280px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
@@ -14,6 +15,6 @@ export const Form = styled.form`
   }
 `;
 
-export const Input = styled(TextField)`
-  margin-bottom: 10px;
+export const StyledInput = styled(TextField)`
+  margin-bottom: 20px;
 `;

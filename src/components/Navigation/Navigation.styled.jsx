@@ -9,7 +9,7 @@ export const NavigationLink = styled(NavLink)`
   margin-right: 10px;
 
   &.active {
-    color: darkgreen;
+    color: #1976d2;
   }
 
   @media screen and (min-width: 768px) {
