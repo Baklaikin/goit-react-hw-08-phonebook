@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export const NavigationLink = styled(NavLink)`
   margin: 0;
   color: darkgrey;
-  font-size: 14px;
+  font-size: 20px;
   text-decoration: none;
   margin-right: 10px;
 
@@ -13,11 +13,7 @@ export const NavigationLink = styled(NavLink)`
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 16px;
-  }
-
-  @media screen and(min-width:1024px) {
-    font-size: 20px;
+    font-size: 18px;
   }
 `;
 
@@ -30,18 +26,8 @@ export const Navigation = styled.nav`
 
 export const Header = styled.header`
   height: auto;
-  width: 320px;
+  width: 100%;
   padding-bottom: 10px;
+  padding-top: 10px;
   border-bottom: 2px solid #e0e0de;
-
-  @media screen and (min-width: 768px) {
-    width: 450px;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 600px;
-  }
-`;
-
-export const Span = styled.span`
-  font-size: 22px;
 `;

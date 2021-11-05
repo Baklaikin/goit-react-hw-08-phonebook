@@ -2,7 +2,6 @@ import {
   NavigationLink,
   Navigation,
   Header,
-  Span,
 } from "components/Navigation/Navigation.styled";
 import { Authnav } from "components/AuthNav/Authnav";
 import { useSelector } from "react-redux";
@@ -15,7 +14,7 @@ export default function Nav() {
     <Header>
       <Navigation>
         <NavigationLink exact to="/">
-          <Span> Home</Span>
+          <span> Главная</span>
         </NavigationLink>
         {isLoggedIn ? (
           <NavigationLink to="/contacts">Контакты</NavigationLink>
