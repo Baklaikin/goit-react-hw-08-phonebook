@@ -20,8 +20,12 @@ export const NavigationLink = styled(NavLink)`
 export const Navigation = styled.nav`
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: baseline;
+  @media screen and (min-width: 768px) {
+    justify-content: space-between;
+  }
 `;
 
 export const Header = styled.header`

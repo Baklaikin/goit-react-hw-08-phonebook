@@ -18,7 +18,7 @@ export default function UserMenu() {
         type="submit"
         onClick={() => dispatch(authOperations.logOut())}
       >
-        Выйти
+        Выход
       </Button>
     </Wrapper>
   );

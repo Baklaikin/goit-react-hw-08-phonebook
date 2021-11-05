@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const List = styled.ul`
   box-sizing: border-box;
-  width: 320px;
+  width: 100%;
   padding: 0;
   margin: 0;
   display: flex;
@@ -17,10 +17,7 @@ export const List = styled.ul`
   padding: 8px;
 
   @media screen and (min-width: 768px) {
-    width: 450px;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 600px;
+    width: 100%;
   }
 `;
 

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { TextField } from "@mui/material";
 
 export const Form = styled.form`
-  width: 320px;
+  width: 100%;
   height: auto;
   margin-left: auto;
   margin-right: auto;
@@ -14,10 +14,7 @@ export const Form = styled.form`
   box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
-    width: 450px;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 600px;
+    width: 100%;
   }
 `;
 
